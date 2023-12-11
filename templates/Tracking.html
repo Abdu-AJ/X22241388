@@ -27,7 +27,7 @@
         <h1 class="display-4">Track Your Ticket</h1>
         <p class="lead">Enter your Ticket Number Please</p>
       </div>
-    <form action="{% url 'Result' %}" method="get">
+    <form action="{% url 'Result' %}" method="get" id="myForm">
     <div class="mb-3">
         <label for="PhoneNumber" class="form-label">Phone Number</label>
         <input type="text" class="form-control" name="PhoneNumber" id="PhoneNumber" placeholder="Phone Number" required>
@@ -35,6 +35,15 @@
     <button type="submit" class="btn btn-primary">Search</button>
   </form>
     </div>
-
+  <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+        var phone = document.getElementById('PhoneNumber').value;
+        var phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(phone)) {
+            alert('Please enter a valid phone number.');
+            event.preventDefault();
+        }
+    });
+</script>
   </body>
 </html>
